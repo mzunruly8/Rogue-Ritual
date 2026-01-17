@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rogue Ritual</title>
+</head>
+<body>
+  <h1>Rogue Ritual</h1>
+  <p id="story">You are roaming through the forest. Do you go left or right?</p>
+  <button onclick="choose('left')">Left</button>
+  <button onclick="choose('right')">Right</button>
+  <p id="status">Points: 0</p>
+
+  <script>
+    // © 2026 mzunruly8. Unique ID: UR-20260117-001
+    const gameCreator = "mzunruly8";
+    let points = 0;
+
+    function choose(direction) {
+      if(direction === 'left') {
+        points += 1;
+        document.getElementById('story').innerText = "You find a hidden stream!";
+      } else {
+        points += 2;
+        document.getElementById('story').innerText = "You encounter a wandering merchant!";
+      }
+      document.getElementById('status').innerText = "Points: " + points;
+    }
+  </script>
+</body>
+</html>
