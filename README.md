@@ -1,6 +1,6 @@
 Rogue Ritual
 
-Rogue Ritual is a free-roaming auto-shooter leveling game where the player controls an Arch Sorcerer who automatically attacks nearby enemies while collecting energy orbs to unlock and upgrade magical abilities.
+Rogue Ritual is a free-roaming auto-shooter leveling game where the player controls a character who begins with simple ranged combat and gradually uncovers their true ritual-bound power.
 
 This repository currently contains early design work and project structure. Development is focused on defining a tight, replayable core loop before full implementation.
 
