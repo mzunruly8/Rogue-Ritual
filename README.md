@@ -1,19 +1,16 @@
-# Rogue-Ritual
-Roaming decisions
+Rogue Ritual
 
-ArchSorcer
+Rogue Ritual is a free-roaming auto-shooter leveling game where the player controls an Arch Sorcerer who automatically attacks nearby enemies while collecting energy orbs to unlock and upgrade magical abilities.
 
-ArchSorcer is a free-roaming auto-shooter leveling game where the player controls a sorcerer who automatically attacks nearby enemies while collecting energy orbs to unlock and upgrade magical abilities.
-
-This repository currently contains the early concept and project structure. Development is focused on defining a tight core loop before full implementation.
+This repository currently contains early design work and project structure. Development is focused on defining a tight, replayable core loop before full implementation.
 
 ---
 
 Core Concept
 
 - Free movement in a top-down arena
-- Automatic targeting and shooting
-- Enemies drop energy orbs
+- Automatic targeting and spellcasting
+- Enemies drop energy orbs on defeat
 - Energy orbs are used to level up and upgrade skills
 - Progressive difficulty over time
 
@@ -23,7 +20,7 @@ Planned Features
 
 - Multiple upgradable spell paths (fire, lightning, defense)
 - Scaling enemy waves and minibosses
-- Lightweight meta-progression
+- Lightweight meta-progression between runs
 - Web-first deployment
 
 ---
@@ -32,9 +29,9 @@ Project Status
 
 🟡 Early design / pre-implementation
 
-The current focus is:
+Current focus:
 
-- Finalizing the MVP scope
+- Finalizing MVP scope
 - Locking the core gameplay loop
 - Choosing the implementation approach (engine + tooling)
 
@@ -44,14 +41,14 @@ Tech Direction
 
 To be determined. This project may use:
 
-- A lightweight 2D engine (Godot / GameMaker / Construct)
+- A lightweight 2D engine (Godot, GameMaker, or Construct)
 - Or a code-first approach once the MVP is locked
 
 ---
 
 License
 
-TBD
+All rights reserved.
 
-© 2026 mzunruly8. All rights reserved.  
-No part of this project may be copied, modified, or redistributed without explicit permission. All monetization and usage rights are retained by the author.
+© 2026 mzunruly8
+This repository is for viewing and evaluation only. No part of this project may be copied, modified, or redistributed without explicit permission.
