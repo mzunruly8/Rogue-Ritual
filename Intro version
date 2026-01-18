@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rogue Ritual</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 2em auto;
+      line-height: 1.5;
+    }
+    button {
+      margin: 0.5em 0.5em 0.5em 0;
+      padding: 0.5em 1em;
+    }
+    #choices {
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rogue Ritual</h1>
+  <p id="story"></p>
+  <div id="choices"></div>
+  <p id="status">Points: 0 | Energy Orbs: 0</p>
+
+  <script>
+    // © 2026 mzunruly8. Unique ID: UR-20260117-003
+    const gameCreator = "mzunruly8";
+
+    let points = 0;
+    let orbs = 0;
+    let sceneIndex = 0;
+
+    const scenes = [
+      // Intro 1: waking up, letter arrives
+      {
+        text: "You wake up on a quiet morning, feeling a strange tingle in your hands. Something feels... off. On your table lies a sealed letter with an unfamiliar crest.",
+        choices: [
+          {text: "Open the letter", nextScene: 1},
+          {text: "Ignore it for now", nextScene: 1}
+        ]
+      },
+      {
+        text: "The letter explains that you are heir to a magical bloodline and must journey to the guild to begin your formal initiation. You feel a mix of curiosity and unease.",
+        choices: [
+          {text: "Prepare for the journey", nextScene: 2}
+        ]
+      },
+      // Intro 2: arriving at guild/family location
+      {
+        text: "You arrive at the ancient guild hall. The air crackles with energy as your latent powers awaken. This is where your true abilities begin to surface.",
+        choices: [
+          {text: "Step inside and test your power", nextScene: 3}
+        ]
+      },
+      // Gameplay start
+      {
+        text: "You find yourself in the guild's training hall. Enemies appear around you. Your basic attacks are ready. Collect energy orbs to unlock and upgrade spells.",
+        choices: [
+          {text: "Attack", action: "attack"},
+          {text: "Collect orb", action: "collect"}
+        ]
+      }
+    ];
+
+    function renderScene() {
+      const scene = scenes[sceneIndex];
+      document.getElementById('story').innerText = scene.text;
+
+      const choicesDiv = document.getElementById('choices');
+      choicesDiv.innerHTML = "";
+
+      scene.choices.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.innerText = choice.text;
+        btn.onclick = () => {
+          if (choice.action === "attack") {
+            points += 1;
+          }
+          if (choice.action === "collect") {
+            orbs += 1;
+          }
+          document.getElementById('status').innerText = "Points: " + points + " | Energy Orbs: " + orbs;
+
+          if (choice.nextScene !== undefined) {
+            sceneIndex = choice.nextScene;
+            renderScene();
+          }
+        };
+        choicesDiv.appendChild(btn);
+      });
+    }
+
+    renderScene();
+  </script>
+</body>
+</html>
