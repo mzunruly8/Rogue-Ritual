@@ -1,30 +1,132 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rogue Ritual</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #0e0e11;
+      color: #e6e6eb;
+    }
+    #game {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    h1 {
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .card {
+      background: #1b1b22;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 10px;
+      background: #6a4df4;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #2e2e38;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .log {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+  </style>
 </head>
 <body>
-  <h1>Rogue Ritual</h1>
-  <p id="story">You are roaming through the forest. Do you go left or right?</p>
-  <button onclick="choose('left')">Left</button>
-  <button onclick="choose('right')">Right</button>
-  <p id="status">Points: 0</p>
+  <div id="game">
+    <h1>Rogue Ritual</h1><div class="card" id="stats"></div>
 
-  <script>
-    // © 2026 mzunruly8. Unique ID: UR-20260117-001
-    const gameCreator = "mzunruly8";
-    let points = 0;
+<div class="card" id="scene"></div>
 
-    function choose(direction) {
-      if(direction === 'left') {
-        points += 1;
-        document.getElementById('story').innerText = "You find a hidden stream!";
-      } else {
-        points += 2;
-        document.getElementById('story').innerText = "You encounter a wandering merchant!";
-      }
-      document.getElementById('status').innerText = "Points: " + points;
+<div class="card">
+  <button onclick="performRitual()">Perform Ritual</button>
+  <button class="secondary" onclick="rest()">Rest</button>
+</div>
+
+<div class="card log" id="log"></div>
+
+  </div>  <script>
+    const state = {
+      hp: 10,
+      maxHp: 10,
+      corruption: 0,
+      insight: 0,
+      day: 1
+    };
+
+    function updateUI() {
+      document.getElementById('stats').innerHTML = `
+        <div class="stat"><span>HP</span><span>${state.hp}/${state.maxHp}</span></div>
+        <div class="stat"><span>Corruption</span><span>${state.corruption}</span></div>
+        <div class="stat"><span>Insight</span><span>${state.insight}</span></div>
+        <div class="stat"><span>Day</span><span>${state.day}</span></div>
+      `;
+
+      document.getElementById('scene').innerHTML = `
+        <p>You stand within the circle. Symbols hum quietly.</p>
+      `;
     }
-  </script>
-</body>
+
+    function log(text) {
+      const el = document.getElementById('log');
+      el.innerHTML = `<p>${text}</p>` + el.innerHTML;
+    }
+
+    function performRitual() {
+      state.day++;
+      const risk = Math.random();
+
+      if (risk < 0.4) {
+        state.insight++;
+        log('The ritual succeeds. Insight grows.');
+      } else if (risk < 0.8) {
+        state.corruption++;
+        state.hp--;
+        log('The ritual twists. Corruption seeps in.');
+      } else {
+        state.hp -= 2;
+        log('The circle fractures. Pain answers your call.');
+      }
+
+      if (state.hp <= 0) {
+        log('You collapse. The ritual claims you.');
+        disableGame();
+      }
+
+      updateUI();
+    }
+
+    function rest() {
+      state.day++;
+      state.hp = Math.min(state.maxHp, state.hp + 2);
+      log('You rest. The silence holds.');
+      updateUI();
+    }
+
+    function disableGame() {
+      document.querySelectorAll('button').forEach(b => b.disabled = true);
+    }
+
+    updateUI();
+  </script></body>
 </html>
